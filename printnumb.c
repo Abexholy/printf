@@ -19,7 +19,7 @@ int print_unsigned_num(va_list types, char buffer[],
 	int a = BUFF_SIZE - 2;
 	unsigned long int n = va_arg(types, unsigned long int);
 
-	n = convert_size_unsigned(n, size);
+	n = convert_size_unsigned_int(n, size);
 
 	if (n == 0)
 		buffer[a--] = '0';
@@ -58,7 +58,7 @@ int print_octa(va_list types, char buffer[],
 
 	UNUSED(width);
 
-	num = convert_size_unsigned(n, size);
+	num = convert_size_unsigned_int(n, size);
 
 	if (n == 0)
 		buffer[a--] = '0';
@@ -76,7 +76,7 @@ int print_octa(va_list types, char buffer[],
 
 	a++;
 
-	return (write_unsigned(0, a, buffer, flags, width, precision, size));
+	return (write_unsigned_int(0, a, buffer, flags, width, precision, size));
 }
 
 /************** PRINT UNSIGNED NUMBER IN HEXADECIMAL **************/
@@ -119,7 +119,7 @@ int print_hexa_upper(va_list types, char buffer[],
 /**
  * print_hexa - Prints a hexadecimal number in lower or upper
  * @types: Lista of arguments
- * @map_to: Array of values to map the number to
+ * @map_it: An array of values to map the number to
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @flag_ac: Calculates active flags
@@ -138,7 +138,7 @@ int print_hexa(va_list types, char map_it[], char buffer[],
 
 	UNUSED(width);
 
-	n = convert_size_unsigned(n, size);
+	n = convert_size_unsigned_int(n, size);
 
 	if (n == 0)
 		buffer[a--] = '0';
@@ -159,6 +159,6 @@ int print_hexa(va_list types, char map_it[], char buffer[],
 
 	a++;
 
-	return (write_unsigned(0, a, buffer, flags, width, precision, size));
+	return (write_unsigned_int(0, a, buffer, flags, width, precision, size));
 }
 
