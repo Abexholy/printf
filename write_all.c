@@ -15,7 +15,7 @@
  */
 int handle_write_char(char c, char buffer[],
 	int flags, int width, int precision, int size)
-{ 
+{
 /* char is stored at left and paddidx at buffer's right */
 	int a = 0;
 	char pad = ' ';
@@ -99,9 +99,9 @@ int write_nums(int emx, char buffer[],
 {
 	int b, pad_strt = 1;
 
-	if (precision == 0 && emx == BUFF_SIZE - 2 && buffer[idx] == '0' && width == 0)
-		return (0); /* printf(".0d", 0)  no char is printed */
-	if (precision == 0 && emx == BUFF_SIZE - 2 && buffer[idx] == '0')
+	if (precision == 0 && emx == BUFF_SIZE - 2 && buffer[emx] == '0')
+	return (0); /* printf(".0d", 0)no char is printed */
+	if (precision == 0 && emx == BUFF_SIZE - 2 && buffer[emx] == '0')
 		buffer[emx] = pad = ' '; /* width is displayed with padding ' ' */
 	if (precision > 0 && precision < len)
 		pad = ' ';
@@ -220,7 +220,7 @@ int write_pointer(char buffer[], int emx, int len,
 		for (c = 3; c < width - len + 3; c++)
 			buffer[c] = pad;
 		buffer[c] = '\0';
-		if (flags i& F_SUB && pad == ' ')/* Assign extra char to left of buffer */
+		if (flags i & F_SUB && pad == ' ')/* Assign extra char to left of buffer */
 		{
 			buffer[--emx] = 'x';
 			buffer[--emx] = '0';
